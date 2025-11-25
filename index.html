@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kalkulator Modern</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <main class="app-main">
+            <section class="card calculator-card">
+                <div class="display-container">
+                    <div id="expression-display" class="expression-display"></div>
+                    <input id="result-display" class="result-display" type="text" readonly value="0" />
+                </div>
+
+                <div class="keypad keypad-scientific">
+                    <button class="btn btn-sci" onclick="applyUnaryFunction('sin')">sin</button>
+                    <button class="btn btn-sci" onclick="applyUnaryFunction('cos')">cos</button>
+                    <button class="btn btn-sci" onclick="applyUnaryFunction('tan')">tan</button>
+                    <button class="btn btn-sci" onclick="applyUnaryFunction('sqrt')">√</button>
+                    <button class="btn btn-sci" onclick="applyUnaryFunction('square')">x²</button>
+                    <button class="btn btn-sci" onclick="appendToExpression('^')">^</button>
+                </div>
+
+                <div class="separator"></div>
+
+                <div class="keypad keypad-main">
+                    <button class="btn btn-action" onclick="clearAll()">AC</button>
+                    <button class="btn btn-action" onclick="backspace()">⌫</button>
+                    <button class="btn btn-action" onclick="applyUnaryFunction('percent')">%</button>
+                    <button class="btn btn-operator" onclick="appendToExpression('/')">÷</button>
+
+                    <button class="btn btn-num" onclick="appendToExpression('7')">7</button>
+                    <button class="btn btn-num" onclick="appendToExpression('8')">8</button>
+                    <button class="btn btn-num" onclick="appendToExpression('9')">9</button>
+                    <button class="btn btn-operator" onclick="appendToExpression('x')">×</button>
+
+                    <button class="btn btn-num" onclick="appendToExpression('4')">4</button>
+                    <button class="btn btn-num" onclick="appendToExpression('5')">5</button>
+                    <button class="btn btn-num" onclick="appendToExpression('6')">6</button>
+                    <button class="btn btn-operator" onclick="appendToExpression('-')">−</button>
+
+                    <button class="btn btn-num" onclick="appendToExpression('1')">1</button>
+                    <button class="btn btn-num" onclick="appendToExpression('2')">2</button>
+                    <button class="btn btn-num" onclick="appendToExpression('3')">3</button>
+                    <button class="btn btn-operator" onclick="appendToExpression('+')">+</button>
+
+                    <button class="btn btn-num btn-zero" onclick="appendToExpression('0')">0</button>
+                    <button class="btn btn-num" onclick="appendToExpression('.')">.</button>
+                    <button class="btn btn-equals" onclick="calculateResult()">=</button>
+                </div>
+            </section>
+
+            <section class="card history-card">
+                <header class="history-header">
+                    <h2>Riwayat</h2>
+                    <button id="clear-history" class="btn-text">Hapus</button>
+                </header>
+                <div class="history-content">
+                    <ul id="history-list" class="history-list"></ul>
+                    <p id="history-empty" class="history-empty">Belum ada riwayat</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

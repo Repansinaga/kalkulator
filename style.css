@@ -1,0 +1,262 @@
+:root {
+    --bg-app: #f0f2f5;
+    --bg-card: #1f2937; /* Dark Gray */
+    --text-main: #ffffff;
+    --text-secondary: #9ca3af;
+    
+    --btn-num-bg: #374151;
+    --btn-num-hover: #4b5563;
+    
+    --btn-op-bg: #f59e0b; /* Orange */
+    --btn-op-hover: #d97706;
+    
+    --btn-act-bg: #4b5563; /* Light Gray */
+    --btn-act-hover: #6b7280;
+    
+    --btn-sci-bg: #111827; /* Very Dark */
+    --btn-sci-text: #60a5fa; /* Blue text */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-app);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.app-main {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+/* --- CARD STYLES --- */
+.card {
+    background-color: var(--bg-card);
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.calculator-card {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* --- DISPLAY --- */
+.display-container {
+    background-color: transparent;
+    text-align: right;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+.expression-display {
+    min-height: 24px;
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.result-display {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 48px;
+    text-align: right;
+    font-weight: 600;
+    outline: none;
+}
+
+/* --- KEYPADS (GRID SYSTEM) --- */
+.keypad {
+    display: grid;
+    gap: 12px;
+}
+
+/* Scientific row: 3 columns x 2 rows or 6 cols on wider screens */
+.keypad-scientific {
+    grid-template-columns: repeat(3, 1fr); /* 3 per baris */
+}
+
+.keypad-main {
+    grid-template-columns: repeat(4, 1fr); /* 4 per baris standard */
+}
+
+/* --- BUTTON STYLES --- */
+.btn {
+    border: none;
+    border-radius: 16px;
+    height: 60px; /* Tinggi tombol pas buat jari */
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s, filter 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Angka 0-9 */
+.btn-num {
+    background-color: var(--btn-num-bg);
+    color: var(--text-main);
+}
+.btn-num:hover { filter: brightness(1.2); }
+
+/* Tombol 0 lebar ganda */
+.btn-zero {
+    grid-column: span 2;
+    border-radius: 30px; /* Lebih bulat */
+    justify-content: flex-start;
+    padding-left: 25px;
+}
+
+/* Operator (+ - x / =) */
+.btn-operator, .btn-equals {
+    background-color: var(--btn-op-bg);
+    color: #fff;
+    font-size: 24px;
+}
+.btn-operator:hover, .btn-equals:hover { background-color: var(--btn-op-hover); }
+
+/* Action (AC, Delete, %) */
+.btn-action {
+    background-color: var(--btn-act-bg);
+    color: var(--text-main);
+}
+.btn-action:hover { filter: brightness(1.2); }
+
+/* Scientific (sin, cos...) */
+.btn-sci {
+    background-color: var(--btn-sci-bg);
+    color: var(--btn-sci-text);
+    font-size: 16px;
+    height: 45px; /* Lebih pendek sedikit */
+}
+.btn-sci:hover { background-color: #1f2937; }
+
+/* Separator Line */
+.separator {
+    height: 1px;
+    background-color: #374151;
+    margin: 5px 0;
+}
+
+/* --- HISTORY PANEL --- */
+.history-card {
+    width: 280px;
+    height: 600px; /* Samakan tinggi kira2 */
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff; /* Putih biar kontras */
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.history-header h2 {
+    font-size: 18px;
+    color: #374151;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.history-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.history-list {
+    list-style: none;
+}
+
+.history-item {
+    padding: 10px;
+    border-bottom: 1px solid #f3f4f6;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.history-item:hover {
+    background-color: #f9fafb;
+}
+
+.history-expression {
+    font-size: 12px;
+    color: #6b7280;
+    margin-bottom: 4px;
+}
+
+.history-result {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.history-empty {
+    text-align: center;
+    color: #9ca3af;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* --- RESPONSIVE / MOBILE --- */
+@media (max-width: 768px) {
+    .app-main {
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+    }
+
+    .card {
+        border-radius: 0;
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .calculator-card {
+        min-height: 100vh; /* Full screen di HP */
+        padding-bottom: 40px;
+    }
+    
+    .history-card {
+        display: none; /* Sembunyikan history di mobile agar tidak penuh (opsional) */
+    }
+    
+    .btn {
+        height: 70px; /* Tombol lebih besar di HP */
+    }
+}
